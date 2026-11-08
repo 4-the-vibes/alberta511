@@ -1,0 +1,37 @@
+# Example dashboard card for a "511 Viewer" entry.
+# Entity IDs follow the device name you gave the entry; adjust if you renamed it.
+type: vertical-stack
+cards:
+  - type: entities
+    entities:
+      - entity: select.511_viewer_feed
+        name: Camera
+  - type: picture-entity
+    entity: camera.511_viewer
+    camera_view: auto
+    show_name: false
+    show_state: false
+  - type: glance
+    columns: 4
+    entities:
+      - entity: sensor.511_viewer_air_temperature
+        name: Air
+      - entity: sensor.511_viewer_pavement_temperature
+        name: Pavement
+      - entity: sensor.511_viewer_wind_speed
+        name: Wind
+      - entity: sensor.511_viewer_humidity
+        name: RH
+  - type: entities
+    entities:
+      - entity: sensor.511_viewer_road_condition
+      - entity: binary_sensor.511_viewer_pavement_at_or_below_freezing
+      - entity: binary_sensor.511_viewer_road_closure_nearby
+      - entity: sensor.511_viewer_nearby_events
+      - entity: sensor.511_viewer_nearest_event
+  - type: markdown
+    content: >-
+      {% set ev = state_attr('sensor.511_viewer_nearby_events', 'events') or [] %}
+      {% for e in ev %}
+      **{{ e.distance_km }} km** – {{ e.description }}{% if e.full_closure %} ⛔{% endif %}
+      {% else %}No events nearby.{% endfor %}

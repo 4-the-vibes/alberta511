@@ -1,0 +1,55 @@
+{
+  "config": {
+    "step": {
+      "user": {
+        "title": "Connect to 511 Alberta",
+        "description": "511 Alberta's API asks for a free developer key (register at 511.alberta.ca, then request a key under Developers). Leave it blank to try without one. Optionally type a filter (e.g. 'Hwy 1 Canmore') to shorten the camera list on the next step.",
+        "data": {
+          "api_key": "Developer API key",
+          "filter": "Filter cameras (optional)"
+        }
+      },
+      "camera": {
+        "title": "Choose a camera feed",
+        "description": "{count} feeds available. With the feed selector on, this is just the starting feed: you get a dropdown entity to switch feeds from a dashboard. Turn it off for a fixed camera.",
+        "data": {
+          "camera": "Camera feed",
+          "show_feed_selector": "Add a feed selector dropdown",
+          "name": "Name (optional)"
+        }
+      },
+      "reauth_confirm": {
+        "title": "Update 511 Alberta developer key",
+        "data": {
+          "api_key": "Developer API key"
+        }
+      }
+    },
+    "error": {
+      "cannot_connect": "Could not reach 511 Alberta.",
+      "invalid_auth": "511 Alberta rejected that developer key.",
+      "key_required": "511 Alberta requires a developer key for this request.",
+      "no_cameras": "511 Alberta returned no cameras.",
+      "no_match": "No cameras matched the filter, so all cameras are shown."
+    },
+    "abort": {
+      "already_configured": "That camera is already set up as a fixed feed.",
+      "reauth_successful": "Developer key updated."
+    }
+  },
+  "options": {
+    "step": {
+      "init": {
+        "title": "Alberta 511 options",
+        "data": {
+          "image_refresh_seconds": "Camera image refresh",
+          "data_refresh_minutes": "Weather, events and road-condition refresh",
+          "event_radius_km": "Radius for nearby events",
+          "weather_match_km": "Max distance to a weather station (fallback)",
+          "api_temperature_unit": "Temperature unit 511 reports in",
+          "api_wind_speed_unit": "Wind speed unit 511 reports in"
+        }
+      }
+    }
+  }
+}
